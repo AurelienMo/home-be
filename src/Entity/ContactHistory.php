@@ -23,6 +23,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ContactHistory extends AbstractEntity
 {
+    const LIST_SUBJECT_CONTACT = [
+        'general_information' => 'Demande informations',
+        'price_information' => 'Information sur les prix',
+        'bug_report' => 'Report de bug',
+    ];
+
     /**
      * @var string
      *

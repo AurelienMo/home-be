@@ -13,7 +13,13 @@ declare(strict_types=1);
 
 namespace App\Actions\Common;
 
+use App\Domain\Common\Exceptions\ValidatorException;
+use App\Domain\ContactRequest\Persister;
+use App\Domain\ContactRequest\RequestResolver;
+use App\Responders\JsonResponder;
 use Swagger\Annotations as SWG;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -23,8 +29,34 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ContactRequest
 {
+    /** @var RequestResolver */
+    protected $requestResolver;
+
+    /** @var Persister */
+    protected $persister;
+
+    /**
+     * ContactRequest constructor.
+     *
+     * @param RequestResolver $requestResolver
+     */
+    public function __construct(
+        RequestResolver $requestResolver,
+        Persister $persister
+    ) {
+        $this->requestResolver = $requestResolver;
+        $this->persister = $persister;
+    }
+
     /**
      * Send a contact request to HomeManagement Staff
+     *
+     * @param Request $request
+     *
+     * @return Response
+     *
+     * @throws ValidatorException
+     * @throws \Exception
      *
      * @SWG\Parameter(
      *     in="body",
@@ -43,7 +75,11 @@ class ContactRequest
      * )
      * @SWG\Tag(name="Common")
      */
-    public function __invoke()
+    public function __invoke(Request $request)
     {
+        $input = $this->requestResolver->resolve($request);
+        $this->persister->persist($input);
+
+        return JsonResponder::response(false, null, 201);
     }
 }

@@ -1,0 +1,17 @@
+{% extends 'mails/layout.html.twig' %}
+
+{% block title %}Confirmation de réception{% endblock %}
+
+{% block body %}
+<div>
+    <p>Bonjour {{ input.firstname }} {{ input.lastname }},</p>
+    <p>
+        Nous vous confirmons la bonne réception de votre demande.<br/>
+        Nous vous répondrons dans les plus bref délais.
+    </p>
+    <p>
+        En vous remerciant de votre confiance.<br/>
+        Le Staff Home Management.
+    </p>
+</div>
+{% endblock %}

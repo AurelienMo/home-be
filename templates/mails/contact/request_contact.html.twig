@@ -1,0 +1,17 @@
+{% extends 'mails/layout.html.twig' %}
+
+{% block title %}Demande d'informations{% endblock %}
+
+{% block body %}
+<div>
+    <p>Bonjour,</p>
+    <p>
+        Une nouvelle demande d'informations est arrivée.<br/>
+        Prénom: {{ input.firstname }}<br/>
+        Nom: {{ input.lastname }}<br/>
+        Email: {{ input.email }}<br/>
+        Sujet de la demande: {{ subject }}<br/>
+        Message: {{ input.message }}
+    </p>
+</div>
+{% endblock %}
