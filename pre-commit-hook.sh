@@ -7,11 +7,6 @@ PHPCS_BIN=vendor/bin/phpcs # example: /usr/local/phpcs
 BEHAT=vendor/bin/behat
 
 TMP_STAGING=".tmp_staging"
-# parse config
-CONFIG_FILE=$(dirname $0)/config
-if [ -e $CONFIG_FILE ]; then
-    . $CONFIG_FILE
-fi
 
 # simple check if code sniffer is set up correctly
 if [ ! -x $PHPCS_BIN ]; then
