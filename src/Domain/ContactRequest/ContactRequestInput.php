@@ -26,56 +26,113 @@ class ContactRequestInput implements InputInterface
      *
      * @Assert\NotBlank()
      */
-    public $firstname;
+    protected $firstname;
 
     /**
      * @var string|null
      *
      * @Assert\NotBlank()
      */
-    public $lastname;
+    protected $lastname;
 
     /**
      * @var string|null
      *
      * @Assert\NotBlank()
      */
-    public $email;
+    protected $email;
 
     /**
      * @var string|null
      *
      * @Assert\NotBlank()
      */
-    public $message;
+    protected $message;
 
     /**
      * @var string|null
      *
      * @Assert\NotBlank()
      */
-    public $subject;
+    protected $subject;
 
     /**
-     * ContactRequestInput constructor.
-     *
+     * @return string|null
+     */
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    /**
      * @param string|null $firstname
+     */
+    public function setFirstname(?string $firstname): void
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    /**
      * @param string|null $lastname
+     */
+    public function setLastname(?string $lastname): void
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
      * @param string|null $email
+     */
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    /**
      * @param string|null $message
+     */
+    public function setMessage(?string $message): void
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    /**
      * @param string|null $subject
      */
-    public function __construct(
-        ?string $firstname,
-        ?string $lastname,
-        ?string $email,
-        ?string $message,
-        ?string $subject
-    ) {
-        $this->firstname = $firstname;
-        $this->lastname = $lastname;
-        $this->email = $email;
-        $this->message = $message;
+    public function setSubject(?string $subject): void
+    {
         $this->subject = $subject;
     }
 }

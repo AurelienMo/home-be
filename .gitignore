@@ -11,3 +11,12 @@ ubuntu-xenial-16.04-cloudimg-console.log
 .vagrant
 .idea
 public/.htaccess
+
+###> behat/symfony2-extension ###
+behat.yml
+###< behat/symfony2-extension ###
+
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###

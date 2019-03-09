@@ -35,14 +35,14 @@ class Persister extends AbstractPersister
     {
         $entity = $this->createObject($input);
 
-         try {
-             $this->persistSave($entity);
-         } catch (ORMInvalidArgumentException|ORMException $e) {
-             throw new HttpException(
-                 Response::HTTP_INTERNAL_SERVER_ERROR,
-                 $e->getMessage()
-             );
-         }
+        try {
+            $this->persistSave($entity);
+        } catch (ORMInvalidArgumentException|ORMException $e) {
+            throw new HttpException(
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+                $e->getMessage()
+            );
+        }
 
          $this->eventDispatcher->dispatch(
              ContactMailEvent::class,
@@ -64,11 +64,11 @@ class Persister extends AbstractPersister
     private function createObject(ContactRequestInput $input)
     {
         return ContactHistoryFactory::create(
-            $input->firstname,
-            $input->lastname,
-            $input->email,
-            $input->subject,
-            $input->message
+            $input->getFirstname(),
+            $input->getLastname(),
+            $input->getEmail(),
+            $input->getSubject(),
+            $input->getMessage()
         );
     }
 }

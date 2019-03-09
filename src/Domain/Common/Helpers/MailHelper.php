@@ -80,5 +80,4 @@ class MailHelper
 
         $this->mailer->send($message);
     }
-
 }
