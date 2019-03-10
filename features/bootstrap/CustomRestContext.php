@@ -106,4 +106,38 @@ class CustomRestContext extends RestContext
             );
         }
     }
+
+    /**
+     * @When After authentication with :username and password :password, I try to logout to :url with POST request
+     */
+    public function afterAuthenticationWithITryToLogoutToWithPostRequest($username, $password, $url)
+    {
+        $requestLogin = $this->request->send(
+            'POST',
+            $this->locatePath('/api/login_check'),
+            [],
+            [],
+            json_encode(
+                [
+                    'username' => $username,
+                    'password' => (string) $password,
+                ]
+            ),
+            ['CONTENT_TYPE' => 'application/json']
+        );
+        $response = json_decode($requestLogin->getContent(), true);
+        $this->request->send(
+            'POST',
+            $this->locatePath($url),
+            [],
+            [],
+            json_encode(
+                [
+                    'refreshToken' => $response['refresh_token'],
+                ]
+            ),
+            ['CONTENT_TYPE' => 'application/json']
+        );
+    }
+
 }

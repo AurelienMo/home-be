@@ -27,7 +27,24 @@ nelmio_api_doc:
                       required: true
                       schema:
                           $ref: "#/definitions/RefreshTokenInput"
+            /api/logout:
+                post:
+                    tags:
+                        - Security
+                    sumarry: Allow user to logout from api & remove refresh token
+                parameters:
+                    - in: body
+                      name: body
+                      required: true
+                      schema:
+                          $ref: "#/definitions/LogoutInput"
         definitions:
+            LogoutInput:
+                type: object
+                properties:
+                    refreshToken:
+                        type: string
+                        required: true
             RefreshTokenInput:
                 type: object
                 properties:
