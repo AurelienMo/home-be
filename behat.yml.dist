@@ -6,6 +6,7 @@ default:
                 - DoctrineContext:
                     doctrine: '@doctrine'
                     kernel: '@kernel'
+                    encoderFactory: '@security.encoder_factory'
                 - CustomRestContext
                 - behatch:context:json
                 - MailContext:
