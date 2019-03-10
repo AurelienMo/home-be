@@ -127,6 +127,9 @@
     "exsyst/swagger": {
         "version": "v0.4.1"
     },
+    "gesdinet/jwt-refresh-token-bundle": {
+        "version": "v0.5.4"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },

@@ -32,28 +32,28 @@ class ContactHistory extends AbstractEntity
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string")
      */
     protected $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string")
      */
     protected $lastname;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string")
      */
     protected $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string")
      */
     protected $subject;
 

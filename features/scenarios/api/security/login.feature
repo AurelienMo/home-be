@@ -21,3 +21,4 @@ Feature: As an anonymous user, I need to be able to submit login request
     And the JSON node "user.lastName" should be equal to "Doe"
     And the JSON node "user.username" should be equal to "john@doe.com"
     And the JSON node "user.roles" should exist
+    And the JSON node "refresh_token" should exist

@@ -31,7 +31,7 @@ class User extends AbstractEntity implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string")
      */
     protected $username;
 
@@ -45,35 +45,35 @@ class User extends AbstractEntity implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string")
      */
     protected $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string")
      */
     protected $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string")
      */
     protected $lastName;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(type="string", nullable=true, length=190)
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $tokenActivation;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string")
      */
     protected $status;
 

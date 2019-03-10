@@ -21,6 +21,11 @@ security:
                 success_handler:          lexik_jwt_authentication.handler.authentication_success
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
             provider: dbprovider
+        refresh:
+            pattern:  ^/api/token/refresh
+            stateless: true
+            anonymous: true
+            provider: dbprovider
         api:
             anonymous: true
             pattern:   ^/api
@@ -35,4 +40,5 @@ security:
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/contact, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/doc, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
