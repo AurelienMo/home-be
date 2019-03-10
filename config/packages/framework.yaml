@@ -15,3 +15,6 @@ framework:
     #fragments: true
     php_errors:
         log: true
+gesdinet_jwt_refresh_token:
+    ttl_update: true
+    user_provider: security.user.provider.concrete.dbprovider

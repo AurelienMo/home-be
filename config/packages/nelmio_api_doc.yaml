@@ -16,7 +16,24 @@ nelmio_api_doc:
                       required: true
                       schema:
                           $ref: "#/definitions/AuthenticationInput"
+            /api/token/refresh:
+                post:
+                    tags:
+                        - Security
+                    sumarry: Refresh token authentication
+                parameters:
+                    - in: body
+                      name: body
+                      required: true
+                      schema:
+                          $ref: "#/definitions/RefreshTokenInput"
         definitions:
+            RefreshTokenInput:
+                type: object
+                properties:
+                    refresh_token:
+                        type: string
+                        required: true
             AuthenticationInput:
                 type: object
                 properties:
