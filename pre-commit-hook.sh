@@ -131,7 +131,7 @@ RETVAL3=$?
 echo $RETVAL3
 
 echo "$PHPSTAN"
-OUTPUT4=$($PHPSTAN)
+OUTPUT4=$($PHPSTAN) analyze src/ --level=7
 RETVAL4=$?
 
 echo $RETVAL4
