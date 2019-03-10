@@ -45,6 +45,10 @@ stan: ## Run phpstan
 stan: vendor/bin/phpstan
 	vendor/bin/phpstan analyze src
 
+cbf: ## Run PHPCBF
+cbf: vendor/bin/phpcbf
+	vendor/bin/phpcbf
+
 ##
 ## Manage Dependencies
 ## ------
