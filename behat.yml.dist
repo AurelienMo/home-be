@@ -2,7 +2,13 @@ default:
     suites:
         default:
             contexts:
-                - FeatureContext:
+                - FeatureContext
+                - DoctrineContext:
+                    doctrine: '@doctrine'
+                    kernel: '@kernel'
+                - CustomRestContext
+                - behatch:context:json
+                - MailContext:
                     kernel: '@kernel'
 
     extensions:

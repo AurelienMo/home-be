@@ -1,0 +1,17 @@
+{
+  "firstname": [
+    "This value should not be blank."
+  ],
+  "lastname": [
+    "This value should not be blank."
+  ],
+  "email": [
+    "This value should not be blank."
+  ],
+  "message": [
+    "This value should not be blank."
+  ],
+  "subject": [
+    "This value should not be blank."
+  ]
+}
