@@ -5,6 +5,7 @@
 
 PHPCS_BIN=vendor/bin/phpcs # example: /usr/local/phpcs
 BEHAT=vendor/bin/behat
+PHPSTAN=vendor/bin/phpstan
 
 TMP_STAGING=".tmp_staging"
 
@@ -17,6 +18,12 @@ fi
 # simple check if behat is set up correctly
 if [ ! -x $BEHAT ]; then
     echo "Behat bin not found or executable -> $BEHAT"
+    exit 1
+fi
+
+# simple check if phpstan is set up correctly
+if [ ! -x $PHPSTAN ]; then
+    echo "Phpstan bin not found or executable -> $PHPSTAN"
     exit 1
 fi
 
@@ -123,11 +130,25 @@ RETVAL3=$?
 
 echo $RETVAL3
 
+echo "$PHPSTAN"
+OUTPUT4=$($PHPSTAN)
+RETVAL4=$?
+
+echo $RETVAL4
+
 if [ $RETVAL3 -ne 0 ]; then
     echo "$OUTPUT3" | less
 fi
 
 if [ $RETVAL3 == "2" ]; then
+	exit 1
+fi
+
+if [ $RETVAL4 -ne 0 ]; then
+    echo "$OUTPUT4" | less
+fi
+
+if [ $RETVAL4 == "2" ]; then
 	exit 1
 fi
 

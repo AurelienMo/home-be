@@ -39,6 +39,7 @@ class ContactRequest
      * ContactRequest constructor.
      *
      * @param RequestResolver $requestResolver
+     * @param Persister       $persister
      */
     public function __construct(
         RequestResolver $requestResolver,

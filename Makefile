@@ -39,7 +39,7 @@ cw: ## Cache warmup (by default, the dev env is used)
 
 cs: ## Run phpcs
 cs: vendor/bin/phpcs
-	vendor/bin/phpcs --standard=PSR1,PSR2 --ignore=src/AppBundle/Domain/DoctrineMigrations/*,src/DataFixtures/* src/
+	vendor/bin/phpcs
 
 stan: ## Run phpstan
 stan: vendor/bin/phpstan
@@ -107,3 +107,4 @@ tu: tests
 	vendor/bin/phpunit
 tf: ## Run behat
 tf: features
+	vendor/bin/behat
