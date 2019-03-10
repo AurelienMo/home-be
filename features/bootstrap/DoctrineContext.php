@@ -112,4 +112,20 @@ class DoctrineContext implements Context
         $property->setAccessible(true);
         $property->setValue($entity, $uuid);
     }
+
+    /**
+     * @Then :number entries should be exist into database for :class object
+     */
+    public function entriesShouldBeExistIntoDatabaseForObject($number, $class)
+    {
+        $count = $this->getManager()->getRepository($class)
+                                    ->findAll();
+
+        if (count($count) !== (int) $number) {
+            throw new Exception(
+                sprintf("%s object(s) has found into database, %s expected", count($count), (int) $number)
+            );
+        }
+    }
+
 }
