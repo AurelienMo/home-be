@@ -11,28 +11,19 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use App\Domain\Common\EntityFactory\BankAccountFactory;
-use App\Domain\Common\EntityFactory\UserFactory;
 use App\Entity\AbstractEntity;
-use App\Entity\Account;
-use App\Entity\CfgBank;
-use App\Entity\CfgCategoryOperation;
-use App\Entity\CfgTypeOperation;
-use App\Entity\GroupUser;
-use App\Entity\OperationAuto;
-use App\Entity\OperationManual;
 use App\Entity\User;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Security\Core\Encoder\EncoderFactory;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**
  * Class DoctrineContext
@@ -48,6 +39,9 @@ class DoctrineContext implements Context
     /** @var KernelInterface */
     private $kernel;
 
+    /** @var EncoderFactoryInterface|EncoderFactory */
+    private $encoderFactory;
+
     /**
      * DoctrineContext constructor.
      *
@@ -57,11 +51,13 @@ class DoctrineContext implements Context
      */
     public function __construct(
         RegistryInterface $doctrine,
-        KernelInterface $kernel
+        KernelInterface $kernel,
+        EncoderFactoryInterface $encoderFactory
     ) {
         $this->doctrine = $doctrine;
         $this->schemaTool = new SchemaTool($this->doctrine->getManager());
         $this->kernel = $kernel;
+        $this->encoderFactory = $encoderFactory;
     }
 
     /**
@@ -115,6 +111,8 @@ class DoctrineContext implements Context
 
     /**
      * @Then :number entries should be exist into database for :class object
+     *
+     * @throws Exception
      */
     public function entriesShouldBeExistIntoDatabaseForObject($number, $class)
     {
@@ -128,4 +126,38 @@ class DoctrineContext implements Context
         }
     }
 
+    /**
+     * @Given I load following users:
+     */
+    public function iLoadFollowingUsers(TableNode $table)
+    {
+        foreach ($table->getHash() as $hash) {
+            $user = new User(
+                $hash['username'],
+                $this->getEncoder()->encodePassword($hash['password'], ''),
+                $hash['firstname'],
+                $hash['lastname'],
+                $hash['tokenActivation']
+            );
+            $this->getManager()->persist($user);
+        }
+
+        $this->getManager()->flush();
+    }
+
+    /**
+     * @Given I enable user :username
+     */
+    public function iEnableUser($username)
+    {
+        $user = $this->getManager()->getRepository(User::class)->findOneBy(['username' => $username]);
+        $user->enable();
+
+        $this->getManager()->flush();
+    }
+
+    private function getEncoder()
+    {
+        return $this->encoderFactory->getEncoder(User::class);
+    }
 }

@@ -4,7 +4,28 @@ nelmio_api_doc:
             title: Home management API
             description: An app to manage your daily
             version: 1.0.0
+        paths:
+            /api/login_check:
+                post:
+                    tags:
+                        - Security
+                    sumarry: Authentication
+                parameters:
+                    - in: body
+                      name: body
+                      required: true
+                      schema:
+                          $ref: "#/definitions/AuthenticationInput"
         definitions:
+            AuthenticationInput:
+                type: object
+                properties:
+                    username:
+                        type: string
+                        required: true
+                    password:
+                        type: string
+                        required: true
             ContactRequestInput:
                 type: object
                 properties:

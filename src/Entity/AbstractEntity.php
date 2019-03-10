@@ -25,7 +25,7 @@ abstract class AbstractEntity
      * @var string
      *
      * @ORM\Id
-     * @ORM\Column(type="uuid")
+     * @ORM\Column(type="string")
      */
     protected $id;
 
