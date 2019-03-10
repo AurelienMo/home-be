@@ -17,6 +17,7 @@ use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Tools\SchemaTool;
+use Gesdinet\JWTRefreshTokenBundle\Entity\RefreshToken;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -154,6 +155,36 @@ class DoctrineContext implements Context
         $user->enable();
 
         $this->getManager()->flush();
+    }
+
+    /**
+     * @Given the user :username should have a refresh token
+     */
+    public function theUserShouldHaveARefreshToken($username)
+    {
+        $refreshToken = $this->getManager()->getRepository(RefreshToken::class)
+                                           ->findOneBy(['username' => $username]);
+        if (is_null($refreshToken)) {
+            throw new Exception(
+                sprintf("User %s should have a refresh token", $username)
+            );
+        }
+    }
+
+
+    /**
+     * @Then the user :username should not have a refresh token
+     */
+    public function theUserShouldNotHaveARefreshToken($username)
+    {
+        $refreshToken = $this->getManager()->getRepository(RefreshToken::class)
+            ->findOneBy(['username' => $username]);
+
+        if (!is_null($refreshToken)) {
+            throw new Exception(
+                sprintf("User %s should not have a refresh token", $username)
+            );
+        }
     }
 
     private function getEncoder()
