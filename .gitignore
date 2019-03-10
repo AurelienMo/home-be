@@ -20,3 +20,5 @@ behat.yml
 /.phpcs-cache
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
+###>deptrac###
+.deptract.cache

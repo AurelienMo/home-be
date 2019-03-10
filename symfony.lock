@@ -239,6 +239,9 @@
             "config/packages/ramsey_uuid_doctrine.yaml"
         ]
     },
+    "sensiolabs-de/deptrac-shim": {
+        "version": "0.4.0"
+    },
     "squizlabs/php_codesniffer": {
         "version": "3.0",
         "recipe": {

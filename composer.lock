@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af4ae64826cf23afd0033bf89cc4b96b",
+    "content-hash": "aa18ac46c7c8dde9deddb423ec4d8573",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6107,6 +6107,48 @@
             ],
             "description": "Symfony Framework extensions and rules for PHPStan",
             "time": "2019-02-13T19:42:11+00:00"
+        },
+        {
+            "name": "sensiolabs-de/deptrac-shim",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sensiolabs-de/deptrac-shim.git",
+                "reference": "e207abf485425e42259e406bb0d8ee3a1754437f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sensiolabs-de/deptrac-shim/zipball/e207abf485425e42259e406bb0d8ee3a1754437f",
+                "reference": "e207abf485425e42259e406bb0d8ee3a1754437f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-tokenizer": "*",
+                "ext-zlib": "*",
+                "php": "^7.1"
+            },
+            "replace": {
+                "sensiolabs-de/astrunner": "^1.0",
+                "sensiolabs-de/deptrac": "self.version"
+            },
+            "bin": [
+                "deptrac"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Mönch",
+                    "email": "simon.moench@sensiolabs.de",
+                    "role": "maintainer"
+                }
+            ],
+            "description": "deptrac phar distribution",
+            "time": "2019-01-11T08:01:26+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

@@ -11,6 +11,12 @@ echo "--------------------"
 vendor/bin/phpcs
 
 echo "--------------------"
+echo "Check Deptrac"
+echo "--------------------"
+vendor/bin/deptrac
+
+
+echo "--------------------"
 echo "Check PHPStan"
 echo "--------------------"
 vendor/bin/phpstan analyze src
