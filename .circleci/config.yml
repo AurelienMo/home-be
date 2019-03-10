@@ -18,7 +18,9 @@ jobs:
             - run:
                   name: Install PHP zip
                   command: sudo docker-php-ext-install zip
-            - run: ./quality.sh
+            - run:
+                  name: Check global quality & project tests
+                  command: ./quality.sh
 
 workflows:
     version: 2
