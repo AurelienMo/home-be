@@ -19,8 +19,17 @@ jobs:
                   name: Install PHP zip
                   command: sudo docker-php-ext-install zip
             - run:
-                  name: Check global quality & project tests
-                  command: ./quality.sh
+                  name: Check Coding Style
+                  command: vendor/bin/phpcs
+            - run:
+                  name: Check Deptrac
+                  command: vendor/bin/deptrac
+            - run:
+                  name: Check PHPStan
+                  command: vendor/bin/phpstan
+            - run:
+                  name: Valid functional tests
+                  command: vendor/bin/behat
 
 workflows:
     version: 2

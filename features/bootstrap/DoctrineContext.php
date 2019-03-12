@@ -187,6 +187,69 @@ class DoctrineContext implements Context
         }
     }
 
+    /**
+     * @param string $username
+     *
+     * @Then user with username :username should exist into database
+     *
+     * @throws Exception
+     */
+    public function userWithUsernameShouldExistIntoDatabase($username)
+    {
+        $user = $this->getManager()->getRepository(User::class)
+                                   ->findOneBy(['username' => $username]);
+
+        if (is_null($user)) {
+            throw new Exception(
+                sprintf(
+                    "User with username '%s' should be exist into database"
+                )
+            );
+        }
+    }
+
+    /**
+     * @param string $username
+     * @param string $status
+     *
+     * @Then user with username :username should have status equal to :status
+     *
+     * @throws Exception
+     */
+    public function userWithUsernameShouldHaveStatusEqualTo($username, $status)
+    {
+        $user = $this->getManager()->getRepository(User::class)
+                                   ->findOneBy(['username' => $username]);
+
+        if ($user->getStatus() !== $status) {
+            throw new Exception(
+                sprintf(
+                    "User '%s' should have status '%s', '%s' occured",
+                    $username,
+                    $status,
+                    $user->getStatus()
+                )
+            );
+        }
+    }
+
+    /**
+     * @param string $username
+     *
+     * @Then the user :username should have a token activation
+     *
+     * @throws Exception
+     */
+    public function theUserWWShouldHaveATokenActivation($username)
+    {
+        $user = $this->getManager()->getRepository(User::class)
+                                   ->findOneBy(['username' => $username]);
+
+        if (is_null($user->getTokenActivation())) {
+            throw new Exception('User should have a token activation');
+        }
+    }
+
     private function getEncoder()
     {
         return $this->encoderFactory->getEncoder(User::class);

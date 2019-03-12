@@ -1,0 +1,14 @@
+{% extends 'mails/layout.html.twig' %}
+
+{% block body %}
+<div>
+    <p>{{ user.firstName }} {{ user.lastName }}</p>
+    <p>
+        Nous vous remercions pour votre inscription, afin de valider votre inscription, nous vous invitons à cliquer sur le lien suivant : <br/>
+        <a href="{{ url }}">Valider mon inscription</a>
+    </p>
+    <p>
+        L'équipe Home Management.
+    </p>
+</div>
+{% endblock %}

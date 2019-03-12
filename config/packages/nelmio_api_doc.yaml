@@ -38,7 +38,42 @@ nelmio_api_doc:
                       required: true
                       schema:
                           $ref: "#/definitions/LogoutInput"
+            /api/registration:
+                post:
+                    tags:
+                        - Account
+                    sumarry: Register to application
+                parameters:
+                    - in: body
+                      name: body
+                      required: true
+                      schema:
+                          $ref: "#/definitions/RegistrationInput"
         definitions:
+            HttpErrorOutput:
+                type: object
+                properties:
+                    code:
+                        type: integer
+                        required: true
+                    message:
+                        type: string
+                        required: true
+            RegistrationInput:
+                type: object
+                properties:
+                    username:
+                        type: string
+                        required: true
+                    firstName:
+                        type: string
+                        required: true
+                    lastName:
+                        type: string
+                        required: true
+                    password:
+                        type: string
+                        required: true
             LogoutInput:
                 type: object
                 properties:

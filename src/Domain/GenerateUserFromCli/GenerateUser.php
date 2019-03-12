@@ -58,6 +58,14 @@ class GenerateUser extends Command
             ->setDescription('Allow to create user from command line');
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return int|void|null
+     *
+     * @throws \Exception
+     */
     protected function execute(
         InputInterface $input,
         OutputInterface $output
@@ -80,8 +88,7 @@ class GenerateUser extends Command
             $datasUser['username'],
             $this->getUserEncoder()->encodePassword($datasUser['password'], ''),
             $datasUser['firstName'],
-            $datasUser['lastName'],
-            md5(uniqid())
+            $datasUser['lastName']
         );
         if ($datasUser['status'] === 'Yes') {
             $user->enable();

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Domain\Common\Helpers\TokenGenerator;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -84,7 +85,6 @@ class User extends AbstractEntity implements UserInterface
      * @param string $password
      * @param string $firstName
      * @param string $lastName
-     * @param string $tokenActivation
      *
      * @throws \Exception
      */
@@ -92,14 +92,13 @@ class User extends AbstractEntity implements UserInterface
         string $username,
         string $password,
         string $firstName,
-        string $lastName,
-        string $tokenActivation
+        string $lastName
     ) {
         $this->username = $username;
         $this->password = $password;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
-        $this->tokenActivation = $tokenActivation;
+        $this->tokenActivation = TokenGenerator::generate();
         $this->roles[] = 'ROLE_USER';
         $this->status = self::STATUS_PENDING_VALIDATION;
         parent::__construct();
@@ -158,5 +157,13 @@ class User extends AbstractEntity implements UserInterface
     {
         $this->status = self::STATUS_ENABLE;
         $this->tokenActivation = null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
     }
 }
